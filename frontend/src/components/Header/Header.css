@@ -1,59 +1,75 @@
-.header{
-    height: 34vw;
+.header {
+    height: 34vw; /* Adjust as needed */
     margin: 30px auto;
-    background: url('/pexels.jpg') no-repeat;
-    background-size: contain;
+    background: url('/yetser2.jpg') no-repeat center center; /* Center the background */
+    background-size: cover; /* Cover the entire area */
     position: relative;
-    border-radius: 15px ; 
-
+    border-radius: 15px;
+    width: 100vw; /* Make the header full width */
 }
 
-.header-contents{
+.header-contents {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap:1.5vw;
+    gap: 1.5vw;
     max-width: 50%;
     bottom: 10%;
     left: 6vw;
     animation: fadeIn 3s;
 }
 
-.header-contents h2{
+.header-title {
     font-weight: 500;
-    color: white;
-    font-size: max(4.5vw, 22px);
+    color: orange;
+    font-size: 3.5rem; /* Default size */
+    /* Responsive font size */
+    font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
-.header-contents p{
-    color: white;
-    font-size: 1vw;
+.header-subtitle {
+    font-weight: 500;
+    color: pink;
+    font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
-.header-contents button{
+.header-description {
+    color: white;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.explore-button {
     border: none;
     color: #747474;
     font-weight: 500;
     padding: 1vw 2.3vw;
-    background-color: white;
-    font-size: max(1vw,13px);
+    background-color: orange;
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
     border-radius: 50px;
 }
 
-@media (max-width:1050px){
-    .header-contents{
+@media (max-width: 1050px) {
+    .header-contents {
         max-width: 45%;
     }
+     .header-description {
+        display: none; /* Hide the description on small screens */
+    }
 }
-@media (max-width:750px){
-    .header-contents{
+
+@media (max-width: 750px) {
+    .header-contents {
         max-width: 65%;
     }
-    .header-contents p{
-        display: none;
+    .header-description {
+        display: none; /* Hide the description on small screens */
     }
-    .header-contents button{
+    .header-subtitle{
+    font-weight: 300;
+    color: pink;
+    font-size: clamp(1rem, 2vw,2rem);    }
+    .explore-button {
         padding: 2vw 4vw;
     }
 }

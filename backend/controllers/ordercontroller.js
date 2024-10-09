@@ -1,53 +1,37 @@
 import ordermodel from "../models/ordermodel.js";
 import usermodel from '../models/usermodel.js';
-import Stripe from "stripe"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const placeorder = async (req, res) => {
+  try {
+    const { items, amount, address, userId } = req.body;
 
-const placeorder = async (req,res) =>{
-    const frontend_url = "https://localhost:5173"
-    try {
-        const neworder = new ordermodel({
-            userId: req.body.userId,
-            items:req.body.items,
-            amount:req.body.amount,
-            address:req.body.address
-        })
-        await neworder.save()
-        await usermodel.findByIdAndUpdate(req.body.userId,{cartData:{}})
+    // Create a new order object, setting userId to null if the user is not logged in
+    const neworder = new ordermodel({
+      userId: userId || null, // If no userId, set it to null
+      items: items,
+      amount: amount,
+      address: address,
+    });
 
-        const line_items = req.body.items.map((item)=>({
-            price_data:{
-                currency:"inr",
-                product_data:{
-                    name:item.name
-                },
-                unit_amount:item.price*100*80
-            },
-            quantity:item.quantity
-        }))
-        line_items.push({
-            price_data:{
-                currency:"inr",
-                product_data:{
-                    name:"Delivery Charges"
-                },
-            },
-            quantity:1
-        })
+    // Save the order to the database
+    const savedOrder = await neworder.save();
 
-        const session = await stripe.checkout.sessions.create({
-            line_items:line_items,
-            mode:'payment',
-            success_url: `${frontend_url}/verify?success=true&orderId=${neworder._id}`,
-            cancel_url: `${frontend_url}/verify?success=false&orderId=${neworder._id}`,
-        })
-        res.json({success:true, session_url:session.url})
-    } catch (error) {
-        console.log(error);
-        res.json({success:false, message:"ERROR"})
+    // Optionally clear cart data if the user is logged in
+    if (userId) {
+      await usermodel.findByIdAndUpdate(userId, { cartData: {} });
     }
-}
+
+    // Return success response
+    res.json({
+      success: true,
+      orderId: savedOrder._id,
+      message: "Order placed successfully!",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Error placing order." });
+  }
+};
 
 const verifyorder = async (req,res) =>{
     const {orderId,success} = req.body;

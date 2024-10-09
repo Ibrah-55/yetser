@@ -24,3 +24,27 @@
     transform: scale(1.05);
 }
 
+.app-download {
+  text-align: center; /* Center the content */
+}
+
+
+
+.app-store-container {
+  position: relative; /* Required for positioning the tooltip */
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%; /* Position above the image */
+  left: 50%;
+  transform: translateX(-50%); /* Center the tooltip */
+  background-color: orange; /* Dark background */
+  color: white; /* Text color */
+  padding: 5px 10px; /* Padding around the text */
+  border-radius: 5px; /* Rounded corners */
+  white-space: nowrap; /* Prevent text wrapping */
+  font-size: 14px; /* Font size */
+  margin-bottom: 5px; /* Space between image and tooltip */
+  z-index: 10; /* Ensure it appears above other elements */
+}

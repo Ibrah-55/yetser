@@ -43,10 +43,13 @@ const Storecontextprovider =  (props) => {
     const fetchfoodlist = async () =>{
         const response = await axios.get(url+"/api/food/list");
         setfoodlist(response.data.data)
+        console.log("Data: ", response.data);
+
     }
     const loadcartdata = async (token) =>{
       const response = await axios.post(url+"/api/cart/get", {}, {headers:{token}})
       setcartitems(response.data.cartData)
+
     }
     
 

@@ -1,115 +1,164 @@
-import React, { useContext, useEffect, useState } from 'react'
-import './Placeorder.css'
-import { Storecontext } from '../../Context/Storecontext';
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import "./Placeorder.css";
+import { Storecontext } from "../../Context/Storecontext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+
 const Placeorder = () => {
+  const { gettotalcartamount, token, food_list, cartitems, url, setcartitems } =
+    useContext(Storecontext);
+  const navigate = useNavigate(); // Use useNavigate hook for redirection
 
-  const {gettotalcartamount, token, food_list, cartitems,url} = useContext(Storecontext)
+  const [data, setdata] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    city: "",
+    phone: "",
+    altPhone: "",
+  });
 
-const [data, setdata]= useState({
-  firstName:"",
-  lastName:"",
-  email:"",
-  street:"",
-  city:"",
-  state:"",
-  zipcode:"",
-  country:"",
-  phone:""
-})
-
-const onChangeHandler = (event) => {
-  const name = event.target.name;
-  const value = event.target.value;
-  setdata(data=>({...data,[name]:value}))
-}
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setdata((data) => ({ ...data, [name]: value }));
+  };
 
 const placeorder = async (event) => {
-  // const navigate = useNavigate();
   event.preventDefault();
-  let orderitems = []
-  food_list.map((item)=>{
-    if(cartitems[item._id]>0){
+
+  // Calculate total quantity of items in the cart
+  const totalItems = food_list.reduce(
+    (acc, item) => acc + (cartitems[item._id] || 0),
+    0
+  );
+
+  // If there are no items in the cart, show an alert and stop the order submission
+  if (totalItems === 0) {
+    alert("No items in the cart. Please add items before placing an order.");
+    navigate("/#explore-menu"); // Redirect to cart page on failure
+
+    return; // Stop further execution
+  }
+
+  let orderitems = [];
+  food_list.map((item) => {
+    if (cartitems[item._id] > 0) {
       let iteminfo = item;
-      iteminfo["quantity"] = cartitems[item._id]
-      orderitems.push(iteminfo)
+      iteminfo["quantity"] = cartitems[item._id];
+      orderitems.push(iteminfo);
     }
-  })
-  let orderdata ={
-    address:data,
-    items:orderitems,
-    amount:gettotalcartamount()+2,
-  }
-  let response = await axios.post(url+"/api/order/place", orderdata, {headers:{token}})
-  console.log(response);
-  if(!response.data.success){
-    // const{session_url} = response.data
-    // window.location.replace(session_url)
-    alert("Order sucessfully")
-    // navigate('/myorders')
-  }
-  else{
-    alert("Error")
-  }
-  // console.log(orderitems);
-}
+  });
 
-  // const navigate = useNavigate()
+  let orderdata = {
+    address: data,
+    items: orderitems,
+    amount: gettotalcartamount() + 2,
+  };
 
-  // useEffect(()=>{
-  //   if(!token){
-  //     navigate('/cart')
-  //   }
-  //   else if(gettotalcartamount()===0){
-  //     navigate('/cart')
-  //   }
-  // },[token])
+  try {
+    let response = await axios.post(`${url}/api/order/place`, orderdata, {
+      headers: { token },
+    });
+    if (response.data.success) {
+      alert("Order successfully placed!");
+
+      // Clear the cart after successful order placement
+      setcartitems({});
+
+      // Redirect to home page
+      navigate("/");
+    } else {
+      alert("Error placing the order!");
+      navigate("/cart"); // Redirect to cart page on failure
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Error placing the order!");
+    navigate("/cart"); // Redirect to cart page on failure
+  }
+};
+
 
   return (
-    <form onSubmit={placeorder} className='place-order' >
-      <div className='place-order-left'>
-        <p className='title'>Delivery Information</p>
+    <form onSubmit={placeorder} className="place-order">
+      <div className="place-order-left">
+        <p className="title">Delivery Information</p>
         <div className="multi-fields">
-          <input required name='firstName' onChange={onChangeHandler} value={data.firstName} type="text" placeholder='First name' />
-          <input required name='lastName' onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last name' />
+          <input
+            required
+            name="firstName"
+            onChange={onChangeHandler}
+            value={data.firstName}
+            type="text"
+            placeholder="First name"
+          />
+          <input
+            required
+            name="lastName"
+            onChange={onChangeHandler}
+            value={data.lastName}
+            type="text"
+            placeholder="Last name"
+          />
         </div>
-        <input required name='email' onChange={onChangeHandler} value={data.email} type="text" placeholder='Email address' />
-        <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street' />
-        <div className="multi-fields">
-          <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
-          <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='State' />
-        </div>
-        <div className="multi-fields">
-          <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Zip code' />
-          <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
-        </div>
-        <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
+        <input
+          required
+          name="email"
+          onChange={onChangeHandler}
+          value={data.email}
+          type="text"
+          placeholder="Email address"
+        />
+        <input
+          name="city"
+          onChange={onChangeHandler}
+          value={data.city}
+          type="text"
+          placeholder="City"
+        />
+        <input
+          required
+          name="phone"
+          onChange={onChangeHandler}
+          value={data.phone}
+          type="text"
+          placeholder="Phone"
+        />
+        <input
+          name="altPhone"
+          onChange={onChangeHandler}
+          value={data.altPhone}
+          type="text"
+          placeholder="Alternative Phone (optional)"
+        />
       </div>
       <div className="place-order-right">
         <div className="cart-total">
           <h2>Cart Totals</h2>
           <div>
-          <div className="cart-total-details">
+            <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${gettotalcartamount()}</p>
+              <p>Ksh {gettotalcartamount()}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${gettotalcartamount() === 0 ? 0 : 2}</p>
+              <p>Ksh {gettotalcartamount() === 0 ? 0 : 2}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>${gettotalcartamount() === 0 ? 0 : gettotalcartamount() + 2}</b>
+              <b>
+                Ksh {gettotalcartamount() === 0 ? 0 : gettotalcartamount() + 2}
+              </b>
             </div>
           </div>
-          <button type='submit' >CONFIRM ORDER</button>
+          <button type="submit">CONFIRM ORDER</button>
         </div>
       </div>
-
     </form>
-  )
-}
+  );
+};
 
-export default Placeorder
+export default Placeorder;

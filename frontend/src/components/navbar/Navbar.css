@@ -15,6 +15,8 @@
     gap: 20px;
     color: #49557e;
     font-size: 18px;
+    color: orange;
+
 
 }
 .navbar-menu li{
@@ -25,6 +27,8 @@
     display: flex;
     align-items: center;
     gap: 40px;
+        color: orange;
+
 }
 .navbar button{
     background-color: transparent;
@@ -35,6 +39,8 @@
     border-radius: 50px;
     cursor: pointer;
     transition: 0.3s;
+        color: orange;
+
 
 }
 
@@ -67,6 +73,20 @@
     display: none;
     right: 0;
     z-index: 1;
+}
+.item-quantity {
+  position: absolute;
+  top: -5px; /* Adjust to position it correctly */
+  right: -10px; /* Adjust to position it correctly */
+  background-color: orange; /* Background color for the quantity badge */
+  color: white; /* Text color */
+  border-radius: 50%; /* Make it a circle */
+  width: 20px; /* Fixed width for the badge */
+  height: 20px; /* Fixed height for the badge */
+  display: flex; /* Use flexbox to center the text */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  font-size: 12px; /* Adjust font size */
 }
 
 .navbar-profile:hover .nav-profile-dropdown{
