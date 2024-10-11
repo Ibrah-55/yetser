@@ -1,23 +1,30 @@
 import usermodel from '../models/usermodel.js';
 
-const addtocart = async (req,res) =>{
-    try {
-        let userData = await usermodel.findById(req.body.userId);
-        let cartdata = await userData.cartdata;
-        if(!cartdata[req.body.itemId])
-        {
-            cartdata[req.body.itemId] =1
-        }
-        else{
-            cartdata[req.body.itemId] +=1
-        }
-        await usermodel.findByIdAndUpdate(req.body.userId,{cartdata})
-        res.json({success:true, message:"Added To Cart"});
-    } catch (error) {
-        console.log(error);
-        res.json({success:false, message:"Error"})
+const addtocart = async (req, res) => {
+  try {
+    let userData = await usermodel.findById(req.body.userId);
+    let cartdata = await userData.cartdata;
+
+    // Extract the quantity from the request body
+    const quantityToAdd = req.body.quantity; // Ensure this is sent from the client
+
+    // Check if the item already exists in the cart
+    if (!cartdata[req.body.itemId]) {
+      cartdata[req.body.itemId] = quantityToAdd; // Add the quantity if not exists
+    } else {
+      cartdata[req.body.itemId] += quantityToAdd; // Update the quantity if exists
     }
-}
+
+    // Update the user's cart data
+    await usermodel.findByIdAndUpdate(req.body.userId, { cartdata });
+
+    res.json({ success: true, message: "Added To Cart" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
+
 
 const removefromcart = async (req,res) =>{
     try {
