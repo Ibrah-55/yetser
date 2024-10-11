@@ -9,7 +9,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const url =
+  "https://4076-2c0f-2a80-10d1-e600-00-1002.ngrok-free.app/" ||
+  "http://localhost:4000";
   return (
     <div>
       <ToastContainer/>
