@@ -60,7 +60,7 @@ const Navbar = ({ setshowlogin }) => {
       <div className="navbar-right">
         <div className="navbar-search-icon">
           <Link to="/cart">
-            <img src={assets.cart_icon} alt="cart" />
+            <img src={assets.basket_icon} alt="cart" />
           </Link>
           {getTotalQuantity() > 0 && (
             <div className="item-quantity">{getTotalQuantity()}</div>
