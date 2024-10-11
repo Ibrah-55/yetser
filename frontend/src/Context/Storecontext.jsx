@@ -5,7 +5,7 @@ export const Storecontext = createContext(null);
 
 const Storecontextprovider = (props) => {
   const [cartitems, setcartitems] = useState({});
-const url = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
+const url = "https://4076-2c0f-2a80-10d1-e600-00-1002.ngrok-free.app/" || "http://localhost:4000";
   const [token, settoken] = useState("");
   const [food_list, setfoodlist] = useState([]);
 
