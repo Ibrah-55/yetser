@@ -1,0 +1,27 @@
+/* src/pages/welcome/Welcome.css */
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full height of the viewport */
+  width: 100%; /* Full width of the viewport */
+  background-color: #f0f4f8; /* Light background color */
+  color: #80421C; /* Dark text color */
+  text-align: center;
+  margin: 0; /* Reset margin */
+  padding: 0; /* Reset padding */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.welcome-container h1 {
+  color: #EC7224; /* Primary color */
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-container p {
+  font-size: 1.2rem;
+  color: #555; /* Secondary text color */
+}
