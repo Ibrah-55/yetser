@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 const url =
-  "https://4076-2c0f-2a80-10d1-e600-00-1002.ngrok-free.app/" ||
+  " https://9b3f-2c0f-2a80-10d1-e600-00-1002.ngrok-free.app" ||
   "http://localhost:4000";
   return (
     <div>
