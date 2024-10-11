@@ -1,0 +1,200 @@
+.food-description {
+  padding: 20px;
+  font-family: 'Josefin Sans', sans-serif; /* Set primary font */
+  
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .food-details {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text */
+  }
+
+  .food-image {
+    width: 100%; /* Make the image responsive */
+    max-width: 300px; /* Limit the max width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 0 0 20px 0; /* Margin below the image */
+  }
+
+  .food-info {
+    flex-grow: 0; /* Prevent growth on small screens */
+    width: 100%; /* Allow full width */
+  }
+
+  .quantity-input {
+    width: 80%; /* Make quantity input responsive */
+  }
+
+  .add-to-cart,
+  .continue-shopping,
+  .checkout {
+    width: 80%; /* Make buttons responsive */
+    padding: 15px; /* Increase padding for touch targets */
+    font-size: 1rem; /* Adjust font size */
+  }
+}
+.outer-container {
+  background-color: white; /* Outer background color */
+  padding: 20px; /* Padding around the container */
+}
+
+.content-container {
+  background-color: #F2F2F2; /* Light grey background for the container */
+  border-radius: 15px; /* Rounded edges */
+  width: 90%; /* 80% width */
+  margin: 0 auto; /* Center the container */
+  padding: 20px; /* Padding inside the container */
+}
+
+/* Existing styles remain unchanged */
+.food-description {
+  font-family: 'Josefin Sans', sans-serif; /* Set primary font */
+}
+
+/* Rest of the existing styles... */
+.food-details {
+  display: flex; /* Flexbox for horizontal alignment */
+  align-items: center; /* Center vertically */
+  justify-content: space-between; /* Space between image and info */
+}
+
+
+
+/* Tablet and larger styles */
+@media (min-width: 769px) {
+  .food-details {
+    display: flex; /* Flexbox for horizontal alignment */
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Space between image and info */
+  }
+
+  .food-image {
+    width: 300px; /* Set image size */
+    height: auto;
+    margin-right: 20px; /* Space between image and text */
+  }
+
+  .food-info {
+    flex-grow: 1; /* Allow the info section to grow */
+  }
+}
+.itemsname{
+    color: #EC7224;
+}
+.food-title {
+  font-size: 2.5rem; /* Large headline */
+  font-weight: bold;
+  color: #80421C; /* Primary color */
+}
+
+.food-description-text {
+  font-size: 1.2rem; /* Sub headline */
+  font-weight: normal;
+  color: #333;
+  margin: 10px 0; /* Margin for spacing */
+}
+
+.food-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #EC7224; /* Secondary color */
+}
+
+.quantity-input {
+  width: 50px; /* Set a fixed width for quantity input */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px; /* Rounded edges */
+  margin-right: 10px; /* Space next to the button */
+}
+
+.cart-actions {
+  margin: 20px 0;
+}
+
+.add-to-cart
+{
+  background-color: #EC7224; /* Secondary color */
+  color: white;
+  border: none;
+  border-radius: 25px; /* Rounded edges */
+  padding: 6px 10px;
+  margin: 10px;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif; /* Set primary font */
+  transition: background-color 0.3s ease;
+}
+.continue-shopping,
+.checkout {
+  color: #EC7224;
+  border: none;
+  border-radius: 25px; /* Rounded edges */
+  padding: 6px 10px;
+  margin: 10px;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif; /* Set primary font */
+  transition: background-color 0.3s ease;  
+}
+
+.add-to-cart:hover,
+.continue-shopping:hover,
+.checkout:hover {
+  background-color: #80421C; /* Change to primary color on hover */
+}
+.remove-from-cart {
+  background-color: #d9534f; /* Bootstrap danger color */
+  color: white;
+  border: none;
+  border-radius: 25px; /* Rounded edges */
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif; /* Set primary font */
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.remove-from-cart:hover {
+  background-color: #c9302c; /* Darker red on hover */
+}
+
+.action-buttons {
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.similar-products-title {
+  font-size: 2rem; /* Medium headline */
+  font-weight: bold;
+  color: #80421C; /* Primary color */
+}
+
+.similar-products {
+  display: flex;
+  justify-content: center; /* Center similar products */
+  gap: 20px;
+  flex-wrap: wrap; /* Wrap items if they overflow */
+}
+
+.similar-product-item {
+  cursor: pointer;
+  text-align: center;
+  max-width: 120px; /* Set a max width for items */
+}
+
+.similar-product-image {
+  width: 100px;
+  height: auto;
+}
+
+.similar-product-name {
+  font-weight: bold;
+}
+
+.similar-product-price {
+  color: #EC7224; /* Secondary color */
+}

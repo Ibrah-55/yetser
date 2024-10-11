@@ -3,6 +3,8 @@ import "./Placeorder.css";
 import { Storecontext } from "../../Context/Storecontext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { ToastContainer, toast } from "react-toastify"; // Correct import
+import "react-toastify/dist/ReactToastify.css";
 
 const Placeorder = () => {
   const { gettotalcartamount, token, food_list, cartitems, url, setcartitems } =
@@ -24,61 +26,66 @@ const Placeorder = () => {
     setdata((data) => ({ ...data, [name]: value }));
   };
 
-const placeorder = async (event) => {
-  event.preventDefault();
+  const placeorder = async (event) => {
+    event.preventDefault();
 
-  // Calculate total quantity of items in the cart
-  const totalItems = food_list.reduce(
-    (acc, item) => acc + (cartitems[item._id] || 0),
-    0
-  );
+    // Calculate total quantity of items in the cart
+    const totalItems = food_list.reduce(
+      (acc, item) => acc + (cartitems[item._id] || 0),
+      0
+    );
 
-  // If there are no items in the cart, show an alert and stop the order submission
-  if (totalItems === 0) {
-    alert("No items in the cart. Please add items before placing an order.");
-    navigate("/#explore-menu"); // Redirect to cart page on failure
+    // If there are no items in the cart, show an alert and stop the order submission
+    if (totalItems === 0) {
+      alert("No items in the cart. Please add items before placing an order.");
+      navigate("/#explore-menu"); // Redirect to cart page on failure
 
-    return; // Stop further execution
-  }
-
-  let orderitems = [];
-  food_list.map((item) => {
-    if (cartitems[item._id] > 0) {
-      let iteminfo = item;
-      iteminfo["quantity"] = cartitems[item._id];
-      orderitems.push(iteminfo);
+      return; // Stop further execution
     }
-  });
 
-  let orderdata = {
-    address: data,
-    items: orderitems,
-    amount: gettotalcartamount() + 2,
-  };
-
-  try {
-    let response = await axios.post(`${url}/api/order/place`, orderdata, {
-      headers: { token },
+    let orderitems = [];
+    food_list.map((item) => {
+      if (cartitems[item._id] > 0) {
+        let iteminfo = item;
+        iteminfo["quantity"] = cartitems[item._id];
+        orderitems.push(iteminfo);
+      }
     });
-    if (response.data.success) {
-      alert("Order successfully placed!");
 
-      // Clear the cart after successful order placement
-      setcartitems({});
+    let orderdata = {
+      address: data,
+      items: orderitems,
+      amount: gettotalcartamount() + 2,
+    };
 
-      // Redirect to home page
-      navigate("/");
-    } else {
-      alert("Error placing the order!");
-      navigate("/cart"); // Redirect to cart page on failure
+    try {
+      let response = await axios.post(`${url}/api/order/place`, orderdata, {
+        headers: { token },
+      });
+      if (response.data.success) {
+        toast.success("Order successfully placed!", { position: "top-right" });
+
+        // Clear the cart after successful order placement
+        setcartitems({});
+
+        // Redirect to home page
+        setTimeout(() => {
+          navigate("/"); // Redirect to cart page on failure
+        }, 3000);
+      } else {
+        toast.error("Error placing the order!", { position: "top-right" });
+        setTimeout(() => {
+          navigate("/cart"); // Redirect to cart page on failure
+        }, 3000);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error placing the order!", { position: "top-right" });
+      setTimeout(() => {
+        navigate("/cart"); // Redirect to cart page on failure
+      }, 3000);
     }
-  } catch (error) {
-    console.error(error);
-    alert("Error placing the order!");
-    navigate("/cart"); // Redirect to cart page on failure
-  }
-};
-
+  };
 
   return (
     <form onSubmit={placeorder} className="place-order">
@@ -157,6 +164,7 @@ const placeorder = async (event) => {
           <button type="submit">CONFIRM ORDER</button>
         </div>
       </div>
+      <ToastContainer />
     </form>
   );
 };

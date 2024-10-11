@@ -1,11 +1,11 @@
 .header {
-    height: 34vw; /* Adjust as needed */
+    height: 45vw; /* Adjust as needed */
     margin: 30px auto;
-    background: url('/yetser2.jpg') no-repeat center center; /* Center the background */
+    background: url('/yetser9.jpg') no-repeat center center; /* Center the background */
     background-size: cover; /* Cover the entire area */
     position: relative;
     border-radius: 15px;
-    width: 100vw; /* Make the header full width */
+    width: 85vw; /* Make the header full width */
 }
 
 .header-contents {
@@ -22,7 +22,7 @@
 
 .header-title {
     font-weight: 500;
-    color: orange;
+    color: #80421C;
     font-size: 3.5rem; /* Default size */
     /* Responsive font size */
     font-size: clamp(2rem, 5vw, 3.5rem);
@@ -30,7 +30,7 @@
 
 .header-subtitle {
     font-weight: 500;
-    color: pink;
+    color: #EC7224;
     font-size: clamp(1.5rem, 4vw, 2rem);
 }
 
@@ -41,10 +41,10 @@
 
 .explore-button {
     border: none;
-    color: #747474;
+    color: #3C3C3C;
     font-weight: 500;
     padding: 1vw 2.3vw;
-    background-color: orange;
+    background-color: #EC7224;
     font-size: clamp(0.9rem, 2vw, 1.3rem);
     border-radius: 50px;
 }

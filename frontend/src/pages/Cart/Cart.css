@@ -1,103 +1,152 @@
-.cart{
-    margin-top: 100px;
+.cart {
+    margin-top: 100px; /* Space above the cart */
+    padding: 20px; /* Added padding for better spacing */
+    background-color: #fff; /* Set a white background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.cart-items-title{
+.cart-items-title {
     display: grid;
     grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
     align-items: center;
     color: gray;
-    font-size: max(1vw,12px);
+    font-size: max(1vw, 12px);
+    margin-bottom: 10px; /* Added space below title */
 }
 
-.cart-items-item{
-    margin: 10px 0px;
+.cart-items-item {
+    margin: 10px 0;
     color: black;
+    display: grid; /* Changed to grid for better item alignment */
+    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+    align-items: center; /* Align items vertically */
+    padding: 10px 0; /* Added padding for item separation */
 }
 
-.cart-items-item img{
-    width: 50px;
+.cart-items-item img {
+    width: 50px; /* Consistent image size */
+    border-radius: 4px; /* Optional: add rounded corners to images */
 }
 
-.cart hr{
-    height: 1px;
-    background-color: #e2e2e2;
-    border: none;
+.cart hr {
+    height: 1px; /* Line height */
+    background-color: #e2e2e2; /* Line color */
+    border: none; /* No border */
 }
 
-.cart-items-item .cross{
-    cursor: pointer;
+.cart-items-item .cross {
+    cursor: pointer; /* Pointer cursor on hover */
+    color: red; /* Change color for visibility */
+    transition: color 0.3s; /* Smooth color change on hover */
 }
 
-.cart-bottom{
-    margin-top: 80px ;
+.cart-items-item .cross:hover {
+    color: darkred; /* Darker color on hover */
+}
+/* Remove section styling */
+.remove-options {
     display: flex;
-    justify-content: space-between;
-    gap: max(12vw, 20px);
-}
-
-.cart-total{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.cart-total-details{
-    display: flex;
-    justify-content: space-between;
-    color: #555;
-}
-
-.cart-total hr{
-    margin: 10px 0px;
-}
-
-.cart-total button{
-    border: none;
-    color: white;
-    background-color: tomato;
-    width: max(15vw, 200px);
-    padding: 12px 0px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-.cart-promocode{
-    flex: 1;
-}
-.cart-promocode p{
-    color: #555;
-}
-
-.cart-promocode-input{
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #eaeaea;
-    border-radius: 4px;
-}
-.cart-promocode-input input{
-    background: transparent;
-    border: none;
-    outline: none;
-    padding-left: 10px;
+    gap: 10px; /* Space between x and Clear All button */
 }
 
-.cart-promocode-input button{
-    width: max(10vw, 150px);
-    padding: 12px 5px;
-    background-color: black;
+.clear-item-btn {
     border: none;
+    background-color: red;
     color: white;
+    padding: 5px 10px;
+    cursor: pointer;
     border-radius: 4px;
 }
 
-@media (max-width: 750px){
-    .cart-bottom{
-        flex-direction: column-reverse;
+.clear-item-btn:hover {
+    background-color: darkred;
+}
+
+.cart-bottom {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between; /* Space between buttons */
+    gap: max(12vw, 20px); /* Responsive gap */
+}
+
+.cart-total {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Column layout for totals */
+    gap: 20px; /* Space between total sections */
+}
+
+.cart-total-details {
+    display: flex;
+    justify-content: space-between; /* Align text on both ends */
+    color: #555; /* Text color for totals */
+}
+
+.cart-total hr {
+    margin: 10px 0; /* Space above and below the line */
+}
+
+.cart-total button {
+    border: none; /* No border */
+    color: white; /* Text color */
+    background-color: tomato; /* Button color */
+    width: max(15vw, 200px); /* Responsive width */
+    padding: 12px 0; /* Vertical padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background change */
+}
+
+.cart-total button:hover {
+    background-color: darkred; /* Darker shade on hover */
+}
+
+.cart-promocode {
+    flex: 1; /* Occupy remaining space */
+}
+
+.cart-promocode p {
+    color: #555; /* Promo text color */
+}
+
+.cart-promocode-input {
+    margin-top: 10px; /* Space above promo input */
+    display: flex;
+    justify-content: space-between; /* Align items */
+    align-items: center; /* Center vertically */
+    background-color: #eaeaea; /* Light background */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px; /* Padding for input */
+}
+
+.cart-promocode-input input {
+    background: transparent; /* Transparent input */
+    border: none; /* No border */
+    outline: none; /* No outline */
+    padding-left: 10px; /* Space inside input */
+}
+
+.cart-promocode-input button {
+    width: max(10vw, 150px); /* Responsive button width */
+    padding: 12px 5px; /* Padding inside button */
+    background-color: black; /* Button color */
+    border: none; /* No border */
+    color: white; /* Text color */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth background change */
+}
+
+.cart-promocode-input button:hover {
+    background-color: darkgray; /* Change on hover */
+}
+
+@media (max-width: 750px) {
+    .cart-bottom {
+        flex-direction: column-reverse; /* Stack buttons vertically */
     }
-    .cart-promocode{
-        justify-content: start;
+    .cart-promocode {
+        justify-content: start; /* Align promo code to the start */
     }
 }

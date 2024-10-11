@@ -15,7 +15,7 @@
     gap: 20px;
     color: #49557e;
     font-size: 18px;
-    color: orange;
+    color: #EC7224;
 
 
 }
@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     gap: 40px;
-        color: orange;
+    color: #EC7224;
 
 }
 .navbar button{
@@ -39,7 +39,7 @@
     border-radius: 50px;
     cursor: pointer;
     transition: 0.3s;
-        color: orange;
+    color: #EC7224;
 
 
 }
@@ -78,7 +78,7 @@
   position: absolute;
   top: -5px; /* Adjust to position it correctly */
   right: -10px; /* Adjust to position it correctly */
-  background-color: orange; /* Background color for the quantity badge */
+  background-color: #EC7224; /* Background color for the quantity badge */
   color: white; /* Text color */
   border-radius: 50%; /* Make it a circle */
   width: 20px; /* Fixed width for the badge */
@@ -93,18 +93,20 @@
     display: flex;
     flex-direction: column ;
     gap: 10px;
-    background-color: #fff2ef;
+    background-color: #3C3C3C;
     padding: 12px 25px;
-    border-radius: 4px;
+    border-radius: 10%;
     border: 1px solid tomato;
     outline: 2px solid white;
     list-style: none;
+    color: #EC7224;
 }
 .nav-profile-dropdown li{
-    display: flex;
+    display: ;
     align-items: center ;
     gap: 10px;
     cursor: pointer;
+
 }
 
 .nav-profile-dropdown img{

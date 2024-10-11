@@ -3,10 +3,17 @@ import "./Cart.css";
 import { useContext } from "react";
 import { Storecontext } from "./../../Context/Storecontext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"; // Import toast
 
 const Cart = () => {
-  const { cartitems, food_list, removefromcart, gettotalcartamount, url } =
-    useContext(Storecontext);
+  const {
+    cartitems,
+    food_list,
+    removefromcart,
+    gettotalcartamount,
+    url,
+    setcartitems,
+  } = useContext(Storecontext);
   const navigate = useNavigate();
 
   // Calculate total quantity of items in the cart
@@ -14,6 +21,17 @@ const Cart = () => {
     (acc, item) => acc + (cartitems[item._id] || 0),
     0
   );
+
+  // Function to remove all quantities of a single item
+  const clearItem = (itemId) => {
+    setcartitems((prev) => {
+      const newCart = { ...prev };
+      delete newCart[itemId]; // Remove the entire item from cart
+      localStorage.setItem("cart", JSON.stringify(newCart)); // Update localStorage
+      return newCart;
+    });
+    toast.success("Item has been completely removed from the cart."); // Toast notification
+  };
 
   return (
     <div className="cart">
@@ -34,12 +52,12 @@ const Cart = () => {
                 color: "green",
                 height: "50px",
                 width: "250px",
-              }} // Green background
+              }}
             >
               CONTINUE SHOPPING
             </button>
           </div>
-        </div> // Display this message if the cart is empty
+        </div>
       ) : (
         <>
           <div className="cart-items">
@@ -63,18 +81,28 @@ const Cart = () => {
                       <p>Ksh{item.price}</p>
                       <p>{cartitems[item._id]}</p>
                       <p>Ksh{item.price * cartitems[item._id]}</p>
-                      <p
-                        onClick={() => removefromcart(item._id)}
-                        className="cross"
-                      >
-                        x
-                      </p>
+                      <div className="remove-options">
+                        {/* Reduce quantity by one */}
+                        <p
+                          onClick={() => removefromcart(item._id)}
+                          className="clear-item-btn"
+                        >
+                          X
+                        </p>
+                        {/* Remove entire item */}
+                        <button
+                          onClick={() => clearItem(item._id)}
+                          className="cross"
+                        >
+                          Clear all
+                        </button>
+                      </div>
                     </div>
                     <hr />
                   </div>
                 );
               }
-              return null; // Return null if there are no items to display
+              return null;
             })}
           </div>
 
@@ -100,7 +128,7 @@ const Cart = () => {
 
               <button
                 onClick={() => navigate("/order")}
-                style={{ backgroundColor: "green", color: "white" }} // Green background for items present
+                style={{ backgroundColor: "green", color: "white" }}
               >
                 PROCEED TO CHECKOUT
               </button>
@@ -109,13 +137,11 @@ const Cart = () => {
                 style={{
                   backgroundColor: "orange",
                   color: "green",
-                }} // Green background
+                }}
               >
                 CONTINUE SHOPPING
               </button>
             </div>
-
-            {/* Continue Shopping Button */}
           </div>
         </>
       )}
