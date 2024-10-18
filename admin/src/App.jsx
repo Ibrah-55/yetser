@@ -6,7 +6,6 @@ import Add from "./pages/add/Add";
 import List from "./pages/list/List";
 import Orders from "./pages/orders/Orders";
 import Welcome from "./pages/welcome/welcome";
-import Edit from "./pages/edit/Edit"; // Import the Edit component
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -27,7 +26,7 @@ const App = () => {
           <Route path="/add" element={<Add url={url} />} />
           <Route path="/list" element={<List url={url} />} />
           <Route path="/orders" element={<Orders url={url} />} />
-          <Route path="/edit/:id" element={<Edit url={url} />} />{" "}
+          {/* <Route path="/edit/:id" element={<Edit url={url} />} />{" "} */}
           {/* Add the edit route */}
         </Routes>
       </div>
