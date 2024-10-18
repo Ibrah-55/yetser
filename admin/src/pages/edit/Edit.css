@@ -1,0 +1,46 @@
+.edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #323232; /* Background color */
+  color: #d9d9d9; 
+  height: 100vh; /* Full height of the viewport */
+  width: 100%;/* Text color */
+}
+
+.edit h2 {
+  color: #EC7224; /* Header color */
+}
+
+.edit form {
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* Set a fixed width for the form */
+}
+
+.edit label {
+  margin-bottom: 5px;
+}
+
+.edit input {
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #d9d9d9; /* Input border color */
+  border-radius: 5px;
+  background-color: #444; /* Input background color */
+  color: #d9d9d9; /* Input text color */
+}
+
+.edit button {
+  padding: 10px;
+  background-color: #EC7224; /* Button color */
+  color: white; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit button:hover {
+  background-color: #c75a1f; /* Darker shade on hover */
+}

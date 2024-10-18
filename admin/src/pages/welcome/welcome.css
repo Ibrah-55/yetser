@@ -25,3 +25,15 @@
   font-size: 1.2rem;
   color: #555; /* Secondary text color */
 }
+.h3{
+    color: green; /* Primary color */
+
+}
+.button{
+      color: #80421C; /* Dark text color */
+  width: 10%; /* Full width of the viewport */
+
+}
+.button:hover {
+  background-color: green;
+}

@@ -1,5 +1,5 @@
 import ordermodel from "../models/ordermodel.js";
-import usermodel from '../models/usermodel.js';
+import usermodel from "../models/usermodel.js";
 
 const placeorder = async (req, res) => {
   try {
@@ -33,52 +33,75 @@ const placeorder = async (req, res) => {
   }
 };
 
-const verifyorder = async (req,res) =>{
-    const {orderId,success} = req.body;
-    try {
-        if(success=="true"){
-            await ordermodel.findByIdAndUpdate(orderId,{payment:true})
-            res.json({success:true, message:"paid"})
-        }
-        else{
-            await ordermodel.findByIdAndDelete(orderId)
-            res.json({success:false, message:" Not paid"})
-        }
-    } catch (error) {
-        console.log(error);
-
+const verifyorder = async (req, res) => {
+  const { orderId, success } = req.body;
+  try {
+    if (success == "true") {
+      await ordermodel.findByIdAndUpdate(orderId, { payment: true });
+      res.json({ success: true, message: "paid" });
+    } else {
+      await ordermodel.findByIdAndDelete(orderId);
+      res.json({ success: false, message: " Not paid" });
     }
-}
+  } catch (error) {
+    console.log(error);
+  }
+};
 
- 
-const userorder = async (req,res) =>{
-    try {
-        const orders = await ordermodel.find({userId:req.body.userId})
-        res.json({success:true, data:orders})
-    } catch (error) {
-        console.log(error);
-        res.json({success:false, message:"error"})
-    }
-}
+const userorder = async (req, res) => {
+  try {
+    const orders = await ordermodel.find({ userId: req.body.userId });
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "error" });
+  }
+};
 
 const listorders = async (req, res) => {
-    try {
-        const orders = await ordermodel.find({})
-        res.json({success:true, data:orders})
-    } catch (error) {
-        console.log(error);
-        res.json({success:false, message:"error"})
-    }
-}
+  try {
+    const orders = await ordermodel.find({});
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "error" });
+  }
+};
 
-const updateStatus = async (req,res) => {
-    try {
-        await ordermodel.findByIdAndUpdate(req.body.orderId,{status:req.body.status});
-        res.json({success:true,message:"Status Updated"})
-    } catch (error) {
-        console.log(error);
-        res.json({success:false,message:"Error"})
-    }
-}
+const updateStatus = async (req, res) => {
+  try {
+    await ordermodel.findByIdAndUpdate(req.body.orderId, {
+      status: req.body.status,
+    });
+    res.json({ success: true, message: "Status Updated" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
+const deleteOrder = async (req, res) => {
+  const { id } = req.params; // Extract ID from params
+  console.log("Received delete request for ID:", id); // Log the ID for debugging
 
-export{placeorder,verifyorder, userorder,listorders,updateStatus}
+  try {
+    const order = await ordermodel.findByIdAndDelete(id);
+    if (!order) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Order not found" });
+    }
+    res.json({ success: true, message: "Order deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting order:", error);
+    res.status(500).json({ success: false, message: "Error deleting order" });
+  }
+};
+
+export {
+  placeorder,
+  verifyorder,
+  userorder,
+  listorders,
+  updateStatus,
+  deleteOrder,
+};
