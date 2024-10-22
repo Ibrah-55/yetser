@@ -66,11 +66,8 @@
         display: none; /* Hide the description on small screens */
     }
     .header-subtitle{
-    font-weight: 300;
-    color: black;
-    font-size: clamp(1rem, 2vw,2rem);    }
-    .explore-button {
-        padding: 2vw 4vw;
+        display: none; /* Hide the description on small screens */
+
     }
     .header-title {
     font-weight: 300;
