@@ -27,17 +27,30 @@ const FoodDescription = () => {
 
   const totalQuantityInCart = cartitems[foodItem._id] || 0;
 
-  const notifyAdd = (item, qty) => {
-    toast.success(`${qty} ${item} added to cart!`, {
-      position: "bottom-right", // Use string for position
-    });
-  };
+const notifyAdd = (item, qty) => {
+  toast.success(
+    <>
+      <span style={{ color: "#80421C" }}>{qty}</span>{" "}
+      <span style={{ color: "#EC7224" }}>{item}</span> added to cart!
+    </>,
+    {
+      position: "bottom-right",
+    }
+  );
+};
 
-  const notifyRemove = (item) => {
-    toast.info(`${item} removed from cart!`, {
-      position: "bottom-right", // Use string for position
-    });
-  };
+const notifyRemove = (item) => {
+  toast.info(
+    <>
+      1 piece <span style={{ color: "#EC7224" }}>{item}</span> removed from
+      cart!
+    </>,
+    {
+      position: "bottom-right",
+    }
+  );
+};
+
 
   return (
     <div className="outer-container">
@@ -49,7 +62,7 @@ const FoodDescription = () => {
             alt={foodItem.name}
           />
           <div className="food-info">
-            <h1 className="food-title">{foodItem.name}</h1>
+            <h3 className="food-title">{foodItem.name}</h3>
             <p className="food-description-text">{foodItem.description}</p>
             <p className="food-price">Price: @ Ksh {foodItem.price}</p>
             <p className="total-quantity">
@@ -81,7 +94,7 @@ const FoodDescription = () => {
                     notifyRemove(foodItem.name);
                   }}
                 >
-                  Remove from Cart
+Remove
                 </button>
               )}
             </div>
@@ -115,7 +128,8 @@ const FoodDescription = () => {
                 alt={similar.name}
               />
               <p className="similar-product-name">{similar.name}</p>
-              <p className="similar-product-price">Ksh {similar.price}</p>
+              <p className="similar-product-price">@ Ksh {" "}
+                {similar.price}</p>
             </div>
           ))}
         </div>

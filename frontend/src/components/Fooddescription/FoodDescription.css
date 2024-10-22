@@ -1,3 +1,4 @@
+
 .food-description {
   padding: 20px;
   font-family: 'Josefin Sans', sans-serif; /* Set primary font */
@@ -35,6 +36,9 @@
     padding: 15px; /* Increase padding for touch targets */
     font-size: 1rem; /* Adjust font size */
   }
+   .checkout {
+    color: green;
+    }
 }
 .outer-container {
   background-color: white; /* Outer background color */
@@ -82,10 +86,10 @@
   }
 }
 .itemsname{
-    color: #EC7224;
+  color: #80421C; /* Primary color */
 }
 .food-title {
-  font-size: 2.5rem; /* Large headline */
+  font-size: 1.5rem;
   font-weight: bold;
   color: #80421C; /* Primary color */
 }
@@ -98,7 +102,7 @@
 }
 
 .food-price {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #EC7224; /* Secondary color */
 }
@@ -138,11 +142,17 @@
   font-family: 'Josefin Sans', sans-serif; /* Set primary font */
   transition: background-color 0.3s ease;  
 }
-
+  .checkout {
+    color: green;
+    }
 .add-to-cart:hover,
-.continue-shopping:hover,
+.continue-shopping:hover {
+  background-color: #80421C; 
+  color:white;
+}
 .checkout:hover {
-  background-color: #80421C; /* Change to primary color on hover */
+  background-color: green; 
+  color:white;
 }
 .remove-from-cart {
   background-color: #d9534f; /* Bootstrap danger color */

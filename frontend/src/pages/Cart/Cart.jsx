@@ -2,7 +2,7 @@ import React from "react";
 import "./Cart.css";
 import { useContext } from "react";
 import { Storecontext } from "./../../Context/Storecontext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify"; // Import toast
 
 const Cart = () => {
@@ -10,17 +10,21 @@ const Cart = () => {
     cartitems,
     food_list,
     removefromcart,
+   addtocart,
     gettotalcartamount,
     url,
     setcartitems,
   } = useContext(Storecontext);
   const navigate = useNavigate();
+  const { id } = useParams();
 
   // Calculate total quantity of items in the cart
   const totalItems = food_list.reduce(
     (acc, item) => acc + (cartitems[item._id] || 0),
     0
   );
+    const foodItem = food_list.find((item) => item._id === id);
+
 
   // Function to remove all quantities of a single item
   const clearItem = (itemId) => {
@@ -79,16 +83,28 @@ const Cart = () => {
                       <img src={url + "/images/" + item.image} alt="" />
                       <p>{item.name}</p>
                       <p>Ksh{item.price}</p>
-                      <p>{cartitems[item._id]}</p>
+
+                      <p>
+                        <span
+                          className="add"
+                          onClick={() => addtocart(item._id, 1)}
+                        >
+                          +
+                        </span>
+                        {"   "}
+                        {cartitems[item._id]}
+                        {"  "}
+
+                        <span
+                          className="delete"
+                          onClick={() => removefromcart(item._id)}
+                        >
+                          -
+                        </span>
+                      </p>
+
                       <p>Ksh{item.price * cartitems[item._id]}</p>
                       <div className="remove-options">
-                        {/* Reduce quantity by one */}
-                        <p
-                          onClick={() => removefromcart(item._id)}
-                          className="clear-item-btn"
-                        >
-                          X
-                        </p>
                         {/* Remove entire item */}
                         <button
                           onClick={() => clearItem(item._id)}

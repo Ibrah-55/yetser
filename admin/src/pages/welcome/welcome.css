@@ -30,10 +30,11 @@
 
 }
 .button{
-      color: #80421C; /* Dark text color */
+  color: #80421C; /* Dark text color */
   width: 10%; /* Full width of the viewport */
 
 }
 .button:hover {
-  background-color: green;
+  background-color: #454545;
+  color: white;
 }

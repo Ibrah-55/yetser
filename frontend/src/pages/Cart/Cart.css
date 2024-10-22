@@ -141,6 +141,24 @@
 .cart-promocode-input button:hover {
     background-color: darkgray; /* Change on hover */
 }
+.add {
+    color: green;
+    margin-right: 10px;
+}
+
+.add:hover {
+    color: orange; /* Change to orange on hover */
+}
+
+.delete {
+    color: red;
+    margin-left: 10px;
+}
+
+.delete:hover {
+    color: orange; /* Change to orange on hover */
+}
+
 
 @media (max-width: 750px) {
     .cart-bottom {

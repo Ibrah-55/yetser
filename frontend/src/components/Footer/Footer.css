@@ -1,3 +1,17 @@
+/* Ensure the entire page takes full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content should expand to fill available space */
+#root {
+    flex: 1; /* Allow the content to grow and push the footer down */
+}
+
+/* Footer styles */
 .footer {
     color: #EC7224; /* Changed text color to EC7224 */
     background-color: #323232;
@@ -8,6 +22,8 @@
     padding: 20px 8vw;
     padding-top: 80px;
     margin-top: 80px;
+    width: 100%;
+     /* Ensure it spans the full width */
 }
 
 .fot-logo {
@@ -57,13 +73,14 @@
     border: none;
 }
 
+.footer-copyright {
+    text-align: center;
+}
+
 @media (max-width: 750px) {
     .footer-content {
         display: flex;
         flex-direction: column;
         gap: 35px;
-    }
-    .footer-copyright {
-        text-align: center;
     }
 }
