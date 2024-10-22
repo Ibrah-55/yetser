@@ -31,7 +31,6 @@
 }
 .button{
   color: #80421C; /* Dark text color */
-  width: 10%; /* Full width of the viewport */
 
 }
 .button:hover {
