@@ -95,12 +95,12 @@ const deleteOrder = async (orderId) => {
               <option value="Out for delivery">Out for delivery</option>
               <option value="Delivered">Delivered</option>
             </select>
-            <button
+            <p
               className="delete-button"
               onClick={() => deleteOrder(order._id)}
             >
               Delete Order
-            </button>
+            </p>
           </div>
         ))}
       </div>
