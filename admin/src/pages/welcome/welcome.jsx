@@ -19,7 +19,7 @@ const Welcome = ({ onComponentChange }) => {
 
     // Show the initial checking message for 2 seconds
     const timer1 = setTimeout(() => {
-      setMessage("Access granted. Note: Allowed  only in development"); // Change to allowed message
+      setMessage("Access granted. Allowed  only in development!!"); // Change to allowed message
     }, 3000);
     const timer3 = setTimeout(() => {
       setMessage(
