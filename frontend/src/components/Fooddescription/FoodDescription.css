@@ -45,13 +45,12 @@
   padding: 20px; /* Padding around the container */
 }
 
-.content-container {
-  background-color: #F2F2F2; /* Light grey background for the container */
-  border-radius: 15px; /* Rounded edges */
-  width: 90%; /* 80% width */
-  margin: 0 auto; /* Center the container */
-  padding: 20px; /* Padding inside the container */
-}
+/* .content-container {
+  background-color: #F2F2F2; 
+  border-radius: 15px; 
+  margin: 0 auto; 
+  padding: 20px; 
+} */
 
 /* Existing styles remain unchanged */
 .food-description {
@@ -68,7 +67,7 @@
 
 
 /* Tablet and larger styles */
-@media (min-width: 769px) {
+@media (min-width: 750px) {
   .food-details {
     display: flex; /* Flexbox for horizontal alignment */
     align-items: center; /* Center vertically */
@@ -84,6 +83,14 @@
   .food-info {
     flex-grow: 1; /* Allow the info section to grow */
   }
+  
+  .content-container {
+  background-color: #F2F2F2; 
+  border-radius: 15px; 
+  margin: 0 auto; 
+  padding: 20px; 
+}
+
 }
 .itemsname{
   color: #80421C; /* Primary color */
